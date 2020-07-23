@@ -1,1 +1,0 @@
-# IONIC-REACT-APP
