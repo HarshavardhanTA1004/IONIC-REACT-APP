@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 import { logoutUser } from '../firebaseConfig'
 import { useHistory } from 'react-router';
 import bookDetails from '../script/listOfBooks.json'
-// import { ReactReader } from "react-reader";
-// import { any } from 'prop-types';
+import { ReactReader } from 'react-reader';
+import { any } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
 
@@ -18,6 +19,27 @@ const Dashboard: React.FC = () => {
         history.replace('/')
     }
 
+    function displayEpubFile(bookInfo :any) {
+        console.log(bookInfo);  
+        
+        return (
+                    // <div style={{ position: "relative", height: "100%" }}>
+                    //   {" "}
+                      // * Container needs a height..
+                      <IonContent className="ion-padding">
+                          <ReactReader
+                        url={bookInfo.path}
+                        title={"Alice in wonderland"}
+                        // location={"epubcfi(/6/2[cover]!/6)"}
+                        // locationChanged={epubcifi => console.log(epubcifi)}
+                      />
+
+                      </IonContent>
+                      
+                    //  </div>
+                  );
+              
+      }
     // const function displayEpub  {
     //     return (
     //         // <div style={{ position: "relative", height: "100%" }}>
@@ -59,16 +81,29 @@ const Dashboard: React.FC = () => {
             </IonLabel>
             </IonItem>
             <IonItemOptions side="start">
-              <IonItemOption onClick={() => 
-                alert('Pressed Read Button')}>
+              {/* <IonItemOption onClick={() => 
+                alert('Pressed Read Button')}> */}
+                
+                <IonItemOption><IonButton routerLink="/books">Read</IonButton></IonItemOption>
+                  
+                  
+                  {/* <IonItemOption onClick={() => displayEpubFile(book)}>
+
                   Read
-                  </IonItemOption>
+                  </IonItemOption> */}
           </IonItemOptions>
 
           </IonItemSliding>
           ))}
         </IonList>
         <IonButton onClick={logout}>Logout</IonButton>
+
+        {/* <ReactReader
+                        url={'../../public/assets/EPUBS/sample.epub'}
+                        title={"Alice in wonderland"}
+                        location={"epubcfi(/6/2[cover]!/6)"}
+                        // locationChanged={epubcifi => console.log(epubcifi)}
+                      /> */}
       </IonContent>
     </IonPage>
   );

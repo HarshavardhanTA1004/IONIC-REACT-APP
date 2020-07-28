@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Books from './pages/Books';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -37,6 +38,8 @@ const RoutingSystem: React.FC = () => {
         <Route path="/login" component={Login} exact />
         <Route path="/register" component={Register} exact />
         <Route path="/dashboard" component={Dashboard} exact />
+        <Route path="/books" component={Books} exact />
+
         <Route exact path="/" render={() => <Redirect to="/home" />} />
       </IonRouterOutlet>
     </IonReactRouter>
@@ -52,6 +55,9 @@ const App: React.FC = () => {
 
         dispatch(setUserState(user.email))
          window.history.replaceState({}, '', '/dashboard')
+
+        //  dispatch(setUserState(user.email))
+        //  window.history.replaceState({}, '', '/bookdetails')
 
        } else {
         window.history.replaceState({}, '', '/')

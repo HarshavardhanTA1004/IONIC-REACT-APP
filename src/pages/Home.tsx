@@ -4,6 +4,7 @@ import ExploreContainer from '../components/ExploreContainer';
 import './Home.css';
 
 
+
 const Home: React.FC = () => {
   return (
     <IonPage>
@@ -16,7 +17,8 @@ const Home: React.FC = () => {
         <h1 className="ion-padding">WELCOME TO LIBRARY APP</h1>
         <h4>This application is a JOY for book LOVERS!!!</h4>
 
-       
+        
+      
         <IonButton routerLink="/login">LOGIN</IonButton>
         <IonButton routerLink="/register">REGISTER</IonButton>
       </IonContent>
