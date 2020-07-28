@@ -1,5 +1,7 @@
 {
   "name": "LibraryApp",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }

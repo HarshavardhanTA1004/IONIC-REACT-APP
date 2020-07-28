@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
 import { toast } from './toast'
+import { resolve } from 'url'
 
 const config = {
     apiKey: "AIzaSyBB75460RhIwltQZS0uNP5XiG8Re3TIaR8",
@@ -14,14 +15,33 @@ const config = {
 
 firebase.initializeApp(config)
 
+export function getCurrentUser() {
+    return new Promise((resolve, reject) => {
+        const unsubscribe =  firebase.auth().onAuthStateChanged(function (user){
+            if (user){
+                resolve(user)
+            }else {
+                resolve(null)
+
+            }
+            unsubscribe()
+        })
+
+    })
+  
+}
+
+export function logoutUser() {
+    return firebase.auth().signOut()
+}
 
 export async function loginUser(username: string, password: string){
     const email = `${username}@gmail.com`
     try{
         const res = await firebase.auth().signInWithEmailAndPassword(email,
             password)
-            console.log(res)
-            return true 
+            
+            return res
     }catch(error){
       toast(error.message, 4000)
       return false
